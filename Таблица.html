@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Таблица Лидеров</title>
+    <!-- Favicon (картинка на вкладке) -->
+    <link rel="icon" href="img/logo.png" type="image/png" />
+
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #1a1a2e; /* Цвет фона по умолчанию на случай, если обои не загрузятся */
+            color: #ffffff;
+            overflow-x: hidden;
+            /* Обои */
+            background-image: url("img/0.jpg");
+            background-size: cover; /* Растягивает обои по ширине и высоте, обрезая при необходимости */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center center; /* Центрирует изображение по горизонтали и вертикали */
+            position: relative;
+        }
+
+        /* Стиль для кнопки внизу таблицы */
+        .bottom-btn {
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+            padding: 12px;
+            background-color: #00ffff;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            box-shadow: 0 0 8px #00ffff;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+        }
+        .bottom-btn:hover {
+            background-color: #00cccc;
+            transform: scale(1.05);
+        }
+
+        .leaderboard-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: rgba(42, 42, 68, 0.85);
+            padding: 25px 35px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3),
+                        0 0 10px rgba(0, 255, 255, 0.2);
+            border: 1px solid #00ffff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 35px;
+            font-size: 2.0em;
+            text-shadow: 0 0 4px #fff,
+                         0 0 8px #00ffff,
+                         0 0 15px #00ffff,
+                         0 0 25px #00ffff;
+        }
+
+        /* Контейнер для горизонтальной прокрутки */
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+            padding: 0 20px; /* Отступы по бокам для лучшей читаемости на мобильных */
+        }
+
+        table {
+            width: 100%; /* Таблица занимает всю ширину контейнера */
+            border-collapse: collapse; /* Убираем двойные границы */
+            border-spacing: 0; /* Сбрасываем border-spacing, если нужно*/
+            margin-top: 20px;
+            border: 2px solid #00ffff; /* Обводка вокруг таблицы */
+        }
+
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 2px solid #3a3a5a;
+            transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+            border: 1px solid #3a3a5a; /* Обводка для каждой ячейки */
+        }
+
+        th {
+            background-color: #3a3a5a;
+            color: #00ffff;
+            font-weight: bold;
+            text-shadow: 0 0 4px #fff,
+                         0 0 8px #00ffff;
+            border-bottom: 3px solid #00ffff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        /* Чередующиеся строки */
+        tbody tr:nth-child(even) {
+            background-color: #222233;
+        }
+
+        /* Эффект при наведении на обычные строки */
+        tbody tr:not(.top-row):hover {
+            background-color: #3a3a5a;
+            color: #ffffff;
+            text-shadow: 0 0 3px #fff, 0 0 6px #ffffff;
+        }
+
+        /* --- Стили для ТОП-3 с неоновым эффектом и улучшенной читаемостью --- */
+
+        /* Золото (1 место) */
+        tbody tr:nth-child(1) {
+            font-weight: bold;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0.1) 100%);
+            color: #ffffff;
+            text-shadow: 0 0 4px #fff,
+                         0 0 8px #ffd700,
+                         0 0 12px #ffd700,
+                         0 0 18px #ffd700;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        /* Серебро (2 место) */
+        tbody tr:nth-child(2) {
+            font-weight: bold;
+            background: linear-gradient(90deg, rgba(192, 192, 192, 0.3) 0%, rgba(192, 192, 192, 0.1) 100%);
+            color: #ffffff;
+            text-shadow: 0 0 4px #fff,
+                         0 0 8px #c0c0c0,
+                         0 0 12px #c0c0c0,
+                         0 0 18px #c0c0c0;
+            border-bottom: 2px solid #c0c0c0;
+        }
+
+        /* Бронза (3 место) */
+        tbody tr:nth-child(3) {
+            font-weight: bold;
+            background: linear-gradient(90deg, rgba(205, 133, 63, 0.3) 0%, rgba(205, 133, 63, 0.1) 100%);
+            color: #ffffff;
+            text-shadow: 0 0 4px #fff,
+                         0 0 8px #cd7f32,
+                         0 0 12px #cd7f32,
+                         0 0 18px #cd7f32;
+            border-bottom: 2px solid #cd7f32;
+        }
+
+        /* Центрирование */
+        .text-center {
+            text-align: center;
+        }
+        .text-right {
+            text-align: right;
+        }
+
+        /* Применяем свечение к конкретным ячейкам ТОП-3 */
+        /* Добавляем общую тень для лучшей видимости */
+        tbody tr td {
+            text-shadow: 0 0 3px #fff;
+        }
+
+        /* Для строк ТОП-3: усиливаем тень, добавляя основной цвет */
+        tbody tr:nth-child(1) td,
+        tbody tr:nth-child(2) td,
+        tbody tr:nth-child(3) td {
+            border-color: inherit;
+            text-shadow: 0 0 4px #fff,
+                         0 0 8px currentColor;
+        }
+
+        /* Стилизация медалей */
+        .medal {
+            font-size: 1.3em; /* Немного увеличим размер медалей */
+            margin-right: 5px; /* Небольшой отступ справа, если вдруг потребуется */
+        }
+        /* Медаль-иконка */
+        .medal-icon {
+             display: inline-block; /* Чтобы можно было задать margin/padding */
+             vertical-align: middle; /* Выравнивание по вертикали */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="leaderboard-container">
+        <h1>🏆 Таблица Лидеров турнира за 30.07.2025 🏆</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="text-center">№</th>
+                        <th>Игрок</th>
+                        <th class="text-right">Победы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center"><span class="medal-icon">🥇</span></td>
+                        <td>-</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="medal-icon">🥈</span></td>
+                        <td>-</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"><span class="medal-icon">🥉</span></td>
+                        <td>-</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">4</td>
+                        <td>-</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">5</td>
+                        <td>-</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">6</td>
+                        <td>-</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">7</td>
+                        <td>-</td>
+                        <td class="text-right">0</td>
+                    <tr>
+                        <td class="text-center">8</td>
+                        <td>-</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                </tbody>
+            </table>
+                    </tr>
+                        <td colspan="3" style="text-align:center;">
+                            <button class="bottom-btn" onclick="window.location.href='---1.html'">На главную</button>
+                        </td>
+        </div>
+    </div>
+
+</body>
+</html>

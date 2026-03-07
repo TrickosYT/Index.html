@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeysVsNewsX | Leaderboard</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('img/0.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 95%;
+            margin: 20px auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            overflow-x: auto; /* Keep horizontal scroll for table */
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            padding-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 15px;
+            text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold;
+            font-size: 1.5em;
+        }
+
+        /* Inserted styles from first code */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.8em;
+            min-width: 600px;
+            border: 2px solid #00ccff; /* border around the table */
+            background-color: rgba(27, 38, 59, 0.8);
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-shadow: 0 0 5px gold;
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: rgba(255, 215, 0, 0.1);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 215, 0, 0.05);
+        }
+
+        tr:hover {
+            background-color: rgba(255, 215, 0, 0.15);
+            transition: background-color 0.3s ease;
+        }
+
+        td:hover {
+            text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold;
+            transition: text-shadow 0.3s ease;
+        }
+
+        /* Style for button */
+        .home-button {
+            background-color: rgba(255, 215, 0, 0.3);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 0 5px gold;
+            text-shadow: 0 0 5px gold;
+            margin: 20px auto 0 auto;
+            max-width: 200px;
+        }
+
+        .home-button:hover {
+            background-color: rgba(255, 215, 0, 0.7);
+            color: #000;
+        }
+
+        /* Responsive media query */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 98%;
+                margin: 10px auto;
+                padding-bottom: 10px;
+            }
+
+            h1 {
+                font-size: 1.3em;
+                padding: 10px;
+            }
+
+            table {
+                font-size: 0.7em;
+            }
+
+            th, td {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Таблица Лидеров BEYBLADE X</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Имя</th>
+                    <th>Дата рождения</th>
+                    <th>Город</th>
+                    <th>Ранг</th>
+                    <th>Очки</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Button to go back to main page -->
+        <a href="---1.html" class="home-button">На Главную</a>
+    </div>
+
+</body>
+</html>

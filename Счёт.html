@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeysVsNewsX | Счетчик Очков</title>
+    <link rel="icon" href="img/logo.png" type="image/logo/unnamed.png">
+</head>
+<body style="font-family: sans-serif; margin: 0; padding: 0;
+            background: url('img/0.jpg') no-repeat center center fixed;
+            background-size: cover; color: #fff;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh;">
+
+    <h1 style="text-align: center; padding: 20px; color: white;
+                text-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 30px cyan;">
+        Счетчик Очков BEYBLADE X
+    </h1>
+
+    <div id="setupSection" style="width: 80%; margin-bottom: 20px; background: rgba(0, 0, 0, 0.7);
+                border-radius: 10px; padding: 20px; text-align: center; color: white;
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);">
+        <h2 style="text-shadow: 0 0 5px cyan;">Настройки Игры</h2>
+        <label for="winningScoreSelect" style="text-shadow: 0 0 5px cyan;">До скольки очков играем?</label>
+        <select id="winningScoreSelect" style="background-color: rgba(0, 255, 255, 0.1); color: black; border: 1px solid rgba(0, 255, 255, 0.3);
+                          border-radius: 5px; padding: 5px; text-align: center; margin-bottom: 10px;">
+            <option value="3">До 3 очков</option>
+            <option value="4" selected>До 4 очков</option>
+            <option value="5">До 5 очков</option>
+            <option value="7">До 7 очков</option>
+            <option value="10">До 10 очков</option>
+        </select>
+        <br>
+        <button onclick="startGame()"
+                style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                       background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                       border-radius: 5px; text-shadow: 0 0 5px cyan;
+                       box-shadow: 0 0 5px cyan;">Начать Игру</button>
+    </div>
+
+    <div id="gameSection" style="position: relative; display: none; justify-content: space-around; width: 80%;
+                margin-bottom: 20px; background: rgba(0, 0, 0, 0.7);
+                border-radius: 10px; padding: 20px; color: white;
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);">
+
+        <button onclick="goToHomePage()"
+                style="position: absolute; top: 10px; left: 10px; padding: 10px 20px; font-size: 1em; cursor: pointer;
+                       background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                       border-radius: 5px; text-shadow: 0 0 5px cyan;
+                       box-shadow: 0 0 5px cyan;">На Главную</button>
+
+        <div style="text-align: center;">
+            <label for="player1Name" style="text-shadow: 0 0 5px cyan;">Игрок 1:</label>
+            <input type="text" id="player1Name" value="Игрок 1"
+                   style="background-color: rgba(0, 255, 255, 0.1); color: #fff; border: 1px solid rgba(0, 255, 255, 0.3);
+                          border-radius: 5px; padding: 5px; text-align: center; margin-bottom: 5px;">
+            <div id="player1Score" style="font-size: 2em; margin-bottom: 10px;
+                                            text-shadow: 0 0 5px cyan;">
+                0
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <button onclick="addScore(1, 1)"
+                                style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                       background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                       border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                       box-shadow: 0 0 5px cyan;">Спин Финиш +1</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="addScore(1, 2)"
+                                style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                       background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                       border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                       box-shadow: 0 0 5px cyan;">Выбивание/Взрыв +2</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="addScore(1, 3)"
+                                style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                       background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                       border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                       box-shadow: 0 0 5px cyan;">Экстрим Финиш +3</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="text-align: center;">
+            <label for="player2Name" style="text-shadow: 0 0 5px cyan;">Игрок 2:</label>
+            <input type="text" id="player2Name" value="Игрок 2"
+                   style="background-color: rgba(0, 255, 255, 0.1); color: #fff; border: 1px solid rgba(0, 255, 255, 0.3);
+                          border-radius: 5px; padding: 5px; text-align: center; margin-bottom: 5px;">
+            <div id="player2Score" style="font-size: 2em; margin-bottom: 10px;
+                                            text-shadow: 0 0 5px cyan;">
+                0
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <button onclick="addScore(2, 1)"
+                                style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                       background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                       border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                       box-shadow: 0 0 5px cyan;">Спин Финиш +1</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="addScore(2, 2)"
+                                style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                       background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                       border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                       box-shadow: 0 0 5px cyan;">Выбивание/Взрыв +2</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="addScore(2, 3)"
+                                style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                       background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                       border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                       box-shadow: 0 0 5px cyan;">Экстрим Финиш +3</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="middleButtons" style="width: 80%; margin-bottom: 20px; background: rgba(0, 0, 0, 0.7);
+                border-radius: 10px; padding: 20px; text-align: center; color: white;
+                box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);">
+        <table>
+            <tr>
+                <td>
+                    <button onclick="undoLastAction()"
+                            style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                   background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                   border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                   box-shadow: 0 0 5px cyan;">Вернуть Действие</button>
+                </td>
+                <td>
+                    <button onclick="resetScores()"
+                            style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                   background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                   border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                   box-shadow: 0 0 5px cyan;">Начать Заново</button>
+                </td>
+                <td>
+                    <button onclick="goToSetup()"
+                            style="padding: 10px 20px; font-size: 1em; cursor: pointer; margin: 5px;
+                                   background-color: rgba(0, 255, 255, 0.3); color: white; border: none;
+                                   border-radius: 5px; text-shadow: 0 0 5px cyan;
+                                   box-shadow: 0 0 5px cyan;">Изменить</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+   <div style="display: flex; flex-wrap: wrap; justify-content: center; width: 80%; color: white;">
+        <table>
+            <tr>
+                <td><img src="img/spin.jpg" alt="Описание изображения" style="margin: 5px; max-width: 300px;"></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><img src="img/s.png" alt="Описание изображения" style="margin: 5px; max-width: 300px;"></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><img src="img/s1.png" alt="Описание изображения" style="margin: 5px; max-width: 300px;"></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><img src="img/launch-height.png" alt="Описание изображения" style="margin: 5px; max-width: 300px;"></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><img src="img/rearea.jpg" alt="Описание изображения" style="margin: 5px; max-width: 300px;"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let player1Score = 0;
+        let player2Score = 0;
+        let history = []; // Массив для хранения истории действий
+        let winningScore = 4; // Значение по умолчанию
+
+        const player1ScoreElement = document.getElementById("player1Score");
+        const player2ScoreElement = document.getElementById("player2Score");
+        const player1NameInput = document.getElementById("player1Name");
+        const player2NameInput = document.getElementById("player2Name");
+        const setupSection = document.getElementById("setupSection");
+        const gameSection = document.getElementById("gameSection");
+        const middleButtons = document.getElementById("middleButtons");
+        const winningScoreSelect = document.getElementById("winningScoreSelect");
+
+        function startGame() {
+            winningScore = parseInt(winningScoreSelect.value); // Получаем значение из select
+            setupSection.style.display = "none";
+            gameSection.style.display = "flex"; // Делаем секцию с игрой видимой
+             middleButtons.style.display = "block";
+        }
+
+        function updateScore(player, score) {
+            if (player === 1) {
+                player1Score = score;
+                player1ScoreElement.textContent = score;
+            } else {
+                player2Score = score;
+                player2ScoreElement.textContent = score;
+            }
+
+            checkWinner();
+        }
+
+        function addScore(player, points) {
+            // Сохраняем состояние до изменения
+            history.push({
+                player1: player1Score,
+                player2: player2Score
+            });
+
+            if (player === 1) {
+                updateScore(1, player1Score + points);
+            } else {
+                updateScore(2, player2Score + points);
+            }
+        }
+
+        function resetScores() {
+            // Сохраняем состояние до сброса
+            history.push({
+                player1: player1Score,
+                player2: player2Score
+            });
+
+            updateScore(1, 0);
+            updateScore(2, 0);
+        }
+
+        function undoLastAction() {
+            if (history.length > 0) {
+                const lastState = history.pop();
+                updateScore(1, lastState.player1);
+                updateScore(2, lastState.player2);
+            } else {
+                alert("Нет действий для отмены!");
+            }
+        }
+
+        function goToHomePage() {
+            window.location.href = "---1.html"; // Замените "index.html" на фактический путь к вашей главной странице
+        }
+
+        function goToSetup() {
+            setupSection.style.display = "block";
+            gameSection.style.display = "none";
+             middleButtons.style.display = "none";
+            resetScores();
+        }
+
+        function checkWinner() {
+            let player1Name = player1NameInput.value || "Игрок 1";
+            let player2Name = player2NameInput.value || "Игрок 2";
+            let winner = null;
+
+            if (player1Score >= winningScore) {
+                winner = player1Name;
+            } else if (player2Score >= winningScore) {
+                winner = player2Name;
+            }
+
+            if (winner) {
+                alert("Игра окончена! Победитель: " + winner);
+            }
+        }
+    </script>
+
+</body>
+</html>

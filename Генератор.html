@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BeysVsNewsX | Генератор сборок</title>
+    <link rel="icon" href="img/logo.png" type="image/png" />
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('img/0.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-shadow: 0 0 5px #00ccff;
+        }
+
+        .assembly-generator {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #00ccff;
+            text-align: center;
+            font-family: sans-serif;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .assembly {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .part {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #00ccff;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон для части */
+        }
+
+        .part img {
+            max-width: 100px;
+            height: auto;
+            object-fit: contain;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон за изображением */
+            padding: 5px; /* Отступ вокруг изображений */
+            border-radius: 3px;
+        }
+
+        .button-generator {
+            padding: 10px 20px;
+            background-color: rgba(0, 204, 255, 0.3);
+            color: #00ccff;
+            border: 1px solid #00ccff;
+            cursor: pointer;
+            border-radius: 5px;
+            text-shadow: 0 0 5px #00ccff;
+        }
+
+        .button-generator:hover {
+            background-color: rgba(0, 255, 255, 0.2);
+        }
+
+        /* Стиль для сообщения */
+        #message {
+            margin-top: 10px;
+            font-style: italic;
+            color: #00ccff;
+            text-shadow: 0 0 5px #00ccff;
+        }
+
+        /* Стиль для информации о компоненте */
+        .component-info {
+            font-size: 0.8em;
+            color: #aaa;
+            font-style: italic;
+            margin-top: 5px;
+            text-shadow: 0 0 3px #00ccff;
+        }
+
+        /* Стиль для кнопки "На главную" */
+        .back-to-main {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: rgba(0, 204, 255, 0.3);
+            color: #00ccff;
+            border: 1px solid #00ccff;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            text-shadow: 0 0 5px #00ccff;
+        }
+
+        .back-to-main:hover {
+            background-color: rgba(0, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="assembly-generator">
+        <h2>Генератор случайных сборок Beyblade X</h2>
+
+        <div class="assembly">
+            <div class="part" id="blade">
+                <h3>Blade</h3>
+                <img src="img/layer/DranSword.png" alt="Blade" id="bladeImage">
+                <p id="bladeName">Название слоя</p>
+            </div>
+
+            <div class="part" id="ratchet">
+                <h3>Ratchet</h3>
+                <img src="img/ratchet/3-60.png" alt="Ratchet" id="ratchetImage">
+                <p id="ratchetName">Название рэчета</p>
+            </div>
+
+            <div class="part" id="bit">
+                <h3>Bit</h3>
+                <img src="img/bit/Flat.png" alt="Bit" id="bitImage">
+                <p id="bitName">Название бита</p>
+            </div>
+        </div>
+
+        <button id="generateButton" class="button-generator">Сгенерировать сборку</button>
+        <p id="message"></p>
+
+        <!-- Добавлена кнопка "На главную" -->
+        <a href="---1.html" class="back-to-main">На главную</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const blades = [{
+                    name: "DranBrave",
+                    image: "img/layer/DranBrave.png"
+                },
+                {
+                    name: "KnightShield",
+                    image: "img/layer/KnightShield.png"
+                },
+                {
+                    name: "WizardArrow",
+                    image: "img/layer/WizardArrow.png"
+                },
+                {
+                    name: "DranSword",
+                    image: "img/layer/DranSword.png"
+                },
+                {
+                    name: "HellsScythe",
+                    image: "img/layer/HellsScythe.png"
+                }
+            ];
+
+            const ratchets = [{
+                    name: "3-80",
+                    image: "img/ratchet/3-80.png"
+                },
+                {
+                    name: "4-80",
+                    image: "img/ratchet/4-80.png"
+                },
+                {
+                    name: "6-60",
+                    image: "img/ratchet/6-60.png"
+                },
+                {
+                    name: "3-60",
+                    image: "img/ratchet/3-60.png"
+                },
+                {
+                    name: "4-60",
+                    image: "img/ratchet/4-60.png"
+                }
+            ];
+
+            const bits = [{
+                    name: "Needle",
+                    image: "img/bit/Needle.png"
+                },
+                {
+                    name: "Vortex",
+                    image: "img/bit/Vortex.png"
+                },
+                {
+                    name: "Ball",
+                    image: "img/bit/Ball.png"
+                },
+                {
+                    name: "Flat",
+                    image: "img/bit/Flat.png"
+                },
+                {
+                    name: "Taper",
+                    image: "img/bit/Taper.png"
+                }
+            ];
+
+            function getRandomElement(array) {
+                return array[Math.floor(Math.random() * array.length)];
+            }
+
+            const bladeImg = document.querySelector("#blade img");
+            const ratchetImg = document.querySelector("#ratchet img");
+            const bitImg = document.querySelector("#bitImage");
+
+            const bladeName = document.getElementById("bladeName");
+            const ratchetName = document.getElementById("ratchetName");
+            const bitName = document.getElementById("bitName");
+            const message = document.getElementById("message");
+
+            document.getElementById('generateButton').addEventListener('click', function () {
+                const randomBlade = getRandomElement(blades);
+                const randomRatchet = getRandomElement(ratchets);
+                const randomBit = getRandomElement(bits);
+
+                bladeImg.src = randomBlade.image;
+                bladeImg.alt = randomBlade.name;
+                bladeName.textContent = randomBlade.name;
+
+                ratchetImg.src = randomRatchet.image;
+                ratchetImg.alt = randomRatchet.name;
+                ratchetName.textContent = randomRatchet.name;
+
+                bitImg.src = randomBit.image;
+                bitImg.alt = randomBit.name;
+                bitName.textContent = randomBit.name;
+
+                const messages = [
+                    "Удачи в бою!",
+                    "Да победит сильнейший!",
+                    "Приготовься к битве!",
+                    "Собери свою команду!",
+                    "Круши и побеждай!"
+                ];
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                message.textContent = randomMessage;
+            });
+        });
+    </script>
+
+</body>
+</html>
