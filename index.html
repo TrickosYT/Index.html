@@ -51,25 +51,6 @@
     border-radius: 3px;
   }
 
-  /* Спектрограмма в самом низу, растянутая на всю ширину */
-  .spectrum {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-    z-index: 1;
-  }
-
-  /* Каждая полоска спектрограммы */
-  .spectrum-bar {
-    width: 2px;
-    border-radius: 2px;
-  }
-
   /* Заголовок */
   header {
     background-color: rgba(20, 20, 20, 0.9);
@@ -152,75 +133,21 @@
 <!-- Волны звука снизу -->
 <div class="sound-wave bottom" id="bottomWave"></div>
 
-<!-- Спектрограмма в самом низу, растянутая на всю ширину -->
-<div class="spectrum" id="spectrum"></div>
-
 <header>Beyblade X</header>
 
 <div class="beyblade-container">
     <img src="img/logo.png" alt="Beyblade" class="beyblade-image" />
     <h2>Новая эра Beyblade</h2>
     <p>Испытай свою силу и стратегию с Beyblade X! Вращай, соревнуйся и побеждай!</p>
-    <!-- Добавленная кнопка с id -->
+    <!-- Кнопка -->
     <button id="moreBtn" class="btn">Узнать больше</button>
 </div>
 
 <script>
-const spectrumContainer = document.getElementById('spectrum');
-
-const numBars = 199;
-const bars = [];
-
-for (let i = 0; i < numBars; i++) {
-  const bar = document.createElement('div');
-  bar.className = 'spectrum-bar';
-  spectrumContainer.appendChild(bar);
-  // Инициализация высоты
-  bar._height = Math.random() * 40 + 10;
-  // Индекс полоски для волнового эффекта
-  bar._index = i;
-  bars.push(bar);
-}
-
-// Переменная для цветовой волны
-let hueOffset = 0;
-const hueSpeed = 2; // скорость цветового движения
-
-function animate() {
-  hueOffset += hueSpeed;
-
-  for (let i = 0; i < numBars; i++) {
-    const bar = bars[i];
-    // Расчет цвета с плавным сдвигом
-    const hue = (i / numBars) * 360 + hueOffset;
-    bar.style.backgroundColor = `hsl(${hue % 360}, 100%, 50%)`;
-  }
-
-  // Обновляем высоты спектрограммы
-  bars.forEach(bar => {
-    const heightDiff = bar._height - bar._targetHeight;
-    bar._height -= heightDiff * 0.02;
-    if (Math.abs(heightDiff) < 1) {
-      bar._targetHeight = Math.random() * 40 + 10;
-    }
-    bar.style.height = bar._height + 'px';
-  });
-
-  requestAnimationFrame(animate);
-}
-
-// Инициализация высот
-bars.forEach(bar => {
-  bar._targetHeight = Math.random() * 40 + 10;
-});
-
-// Обработчик для кнопки "Узнать больше"
 const moreBtn = document.getElementById('moreBtn');
 moreBtn.addEventListener('click', () => {
   window.location.href = '---1.html'; // замените на нужный вам URL
 });
-
-requestAnimationFrame(animate);
 </script>
 
 </body>
