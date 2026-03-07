@@ -376,10 +376,8 @@
 <header>Beyblade X</header>
 
 <!-- Таймер обратного отсчета -->
-<section id="countdown" style="background: rgba(27,38,59,0.9); padding:20px; margin-top:40px; border-radius:15px; text-align:center; max-width:600px; width:90%;">
-    <h2 style="color:#FFD700; text-shadow: 0 0 8px #FFD700;">До выхода новой серии осталось:</h2>
-    <div id="timer" style="font-size:2em; margin-top:15px; color:#00BFFF;"></div>
-</section>
+<!-- Удалено: <section id="countdown" ... > -->
+<!-- Этот блок убран, так как таймер убран -->
 
 <!-- Навигация -->
 <nav>
@@ -533,12 +531,12 @@
         <div class="shop-grid" style="display:flex; flex-wrap:wrap; justify-content: center; gap:20px;">
             <div class="product-card" style="background:#222; padding:20px; border-radius:10px; max-width:200px; text-align:center;">
                 <h3>Ютуб</h3>
-                <img src="https://avatars.mds.yandex.net/i?id=e75a45fc281294132db5a13a86dd56065d4045f8-4615549-images-thumbs&n=13" alt="youtube" style="max-width:100%;">
+                <img src="img/YT.png" alt="youtube" style="max-width:100%;">
                 <a href="https://youtube.com/@beysvsnewsx?si=0EEqoxVrDxJPYxuC" class="button">Посетить</a>
             </div>
             <div class="product-card" style="background:#222; padding:20px; border-radius:10px; max-width:200px; text-align:center;">
                 <h3>Вк</h3>
-                <img src="https://avatars.mds.yandex.net/i?id=7e2485bacc87b55d6d833ff4c67532a58b211431-13597692-images-thumbs&n=13" alt="vk" style="max-width:100%;">
+                <img src="img/VK.png" alt="vk" style="max-width:100%;">
                 <a href="https://vk.com/beyvsnewsx" class="button">Посетить</a>
             </div>
             <div class="product-card" style="background:#222; padding:20px; border-radius:10px; max-width:200px; text-align:center;">
@@ -550,6 +548,11 @@
                 <h3>Бей-Чат</h3>
                 <img src="img/BeyChat.jpg" alt="BeyChat" style="max-width:100%;">
                 <a href="https://t.me/BeybladeX_Chat" class="button">Посетить</a>
+            </div>
+            <div class="product-card" style="background:#222; padding:20px; border-radius:10px; max-width:200px; text-align:center;">
+                <h3>ТГК создателя сайта</h3>
+                <img src="img/QQ.jpg" alt="wiki" style="max-width:100%;">
+                <a href="https://beyblade.fandom.com/wiki/Beyblade_X_(Season_1)" class="button">Посетить</a>
             </div>
             <div class="product-card" style="background:#222; padding:20px; border-radius:10px; max-width:200px; text-align:center;">
                 <h3>BEYBLADE X wiki</h3>
@@ -653,28 +656,6 @@
     faders.forEach(fader => {
       appearOnScroll.observe(fader);
     });
-
-    // Таймер обратного отсчета
-    const countdownDate = new Date("2025-12-31T00:00:00").getTime(); // замените на нужную дату
-    const timerElement = document.getElementById('timer');
-
-    const countdownFunction = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
-
-      if (distance < 0) {
-        clearInterval(countdownFunction);
-        timerElement.innerHTML = "Событие началось!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      timerElement.innerHTML = `${days} д ${hours} ч ${minutes} м ${seconds} с`;
-    }, 1000);
 
     // Кнопка "Наверх"
     const scrollBtn = document.getElementById('scrollTopBtn');
